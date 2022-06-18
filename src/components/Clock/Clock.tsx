@@ -17,23 +17,34 @@ export const Clock = () => {
         }, 1000);
         return () => {clearInterval(interval)};
     }, []);
-
+    console.log(window.screen.width);
   return (
-	<div className="flex">
-        <div className="clock-box">   
-            <div className="clock">
-				<img style={{
-                    transform: `rotate(${hours * 30}deg)`,
-                }} src="/assets/aguja.png" id="hours" alt='aguja de horas'/>
-				<img style={{
-                    transform: `rotate(${minutes * 6}deg)`,
-                }} src="/assets/agujaMinutos.png" id="minutes" alt='aguja de minutos'/>
-				<img style={{
-                    transform: `rotate(${seconds * 6}deg)`,
-                }}
-                 src="/assets/agujaSegundos.png" id="seconds" alt='aguja de segundos'/>
-			</div>
+    <>
+      {(window.screen.width < 1024) ? 
+          <div className="flex">
+              <div className="clock-box">   
+                  <div className="clock">
+                    <img style={{
+                                transform: `rotate(${hours * 30}deg)`,
+                            }} src="/assets/aguja.png" id="hours" alt='aguja de horas'/>
+                    <img style={{
+                                transform: `rotate(${minutes * 6}deg)`,
+                            }} src="/assets/agujaMinutos.png" id="minutes" alt='aguja de minutos'/>
+                    <img style={{
+                                transform: `rotate(${seconds * 6}deg)`,
+                            }}
+                            src="/assets/agujaSegundos.png" id="seconds" alt='aguja de segundos'/>
+                  </div>
+              </div>
+          </div> 
+        : 
+        <div className="flex">
+          <div className="clock-box">   
+            <p>{(hours > 9) ? hours : '0' + hours}:{(minutes> 9) ? minutes : '0'+minutes }:{(seconds > 9) ? seconds : '0'+seconds}</p> 
+          </div>
         </div>
-	</div>
+            
+      }
+    </> 
   )
 }
